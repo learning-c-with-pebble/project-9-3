@@ -1,8 +1,3 @@
-//----------------------------------------------------------------------------------
-//
-// Project 9.3 from "Learning C with Pebble"
-// 
-// Mike Jipping, June 2016
 
 #include <pebble.h>
 
@@ -140,41 +135,8 @@ void open_madlibs_files() {
 
 // Replace the original element with the replacement as given in the parameters.
 void replace_string(char *string, char *original, char *replacement) {
-    int slength = strlen(string);
-    int olength = strlen(original);
-    int rlength = strlen(replacement);
-    int index;
-    
-    index = index_of(string, original, 0);
-    if (index < 0) return;
-    
-    char *newstring = (char *)malloc(sizeof(char)*(slength+rlength-olength+1));
-    int newpos = 0;   
-    int srcpos = 0;
 
-    while (index >= 0) {
-        // Copy up to the index
-        for (; srcpos<index; srcpos++,newpos++) {
-            newstring[newpos] = string[srcpos];
-        }
-        
-        // Copy from the replacement
-        for (int i=0; i<rlength; i++,newpos++) {
-           newstring[newpos] = replacement[i];
-        }
-        
-        // Adjust the old position and look again
-        srcpos += olength;
-        index = index_of(string, original, srcpos);
-    } 
-    
-    // Copy the rest of the string
-    for (; srcpos<slength; newpos++,srcpos++)
-        newstring[newpos] = string[srcpos];
-    newstring[newpos] = '\0';    
 
-    strcpy(string, newstring);
-    free(newstring);
 }
 
 // Replace all the elements in the madlib string and display it by marking
